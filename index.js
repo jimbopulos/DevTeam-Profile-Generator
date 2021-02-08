@@ -26,12 +26,16 @@ function managerQuestions() {
 function engineerQuestions() {
     // ask for another role
         // add?
+        // if yes, run askRole
+        // if not, writeFileSync
 }
 
 // questions for user regarding Intern
 function internQuestions() {
     // ask for another role
         // add?
+        // if yes, run askRole
+        // if not, writeFileSync
 }
 
 // ask for role after taking user through Manager questions first
