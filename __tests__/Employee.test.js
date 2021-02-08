@@ -37,25 +37,18 @@ describe("Employee", () => {
             expect(employee.email).toEqual("triddle@holcrux.com");
         })
     })
+});
 
-    // describe("getFirstName", () => {
-    //     // should give the first name of the employee
-    //     it("should give the first name of the employee", () => {
+    // describe("getRole", () => {
+    //     // should be an employee of the company
+    //     it("should be an employee of the company", () => {
+    //         // arrange
+    //         const employee = new Employee("Tom", "Riddle", 4567, "triddle@holcrux.com");
 
+    //         // act
+    //         employee.getRole();
+
+    //         // assert
+    //         expect(employee.getRole()).toEqual("Employee");
     //     })
     // })
-
-    describe("getRole", () => {
-        // should be an employee of the company
-        it("should be an employee of the company", () => {
-            // arrange
-            const employee = new Employee("Tom", "Riddle", 4567, "triddle@holcrux.com");
-
-            // act
-            employee.getRole();
-
-            // assert
-            expect(employee.getRole()).toEqual("Employee");
-        })
-    })
-})
