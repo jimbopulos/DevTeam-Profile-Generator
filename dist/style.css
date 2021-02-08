@@ -8,6 +8,45 @@
   color: white;
 }
 
+.manager-header,
+.engineer-header,
+.intern-header {
+  padding: 10%;
+}
+
+.card {
+  border-radius: 4px;
+  box-shadow: 2px 3px 8px black;
+}
+
+.list-group {
+  border: 1px solid rgb(192, 191, 191);
+  border-radius: 2px;
+}
+
+.list-group-item {
+  padding: 5%;
+}
+
+.role-info {
+  padding: 15% 5% 15% 5%;
+  background-color: rgb(235, 235, 235);
+}
+
+.manager-header {
+  background-color: tomato;
+}
+
+.engineer-header {
+  background-color: mediumseagreen;
+}
+
+.intern-header {
+  background-color: lemonchiffon;
+}
+
 #dev-card-container {
+  display: flex;
+  justify-content: space-evenly;
   margin-top: 5%;
 }
