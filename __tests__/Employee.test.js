@@ -50,7 +50,7 @@ describe("Employee", () => {
     //         employee.getRole();
 
     //         // assert
-    //         expect(employee).toEqual("Employee");
+    //         expect(employee.role).toEqual("Employee");
     //     })
     // })
 })
