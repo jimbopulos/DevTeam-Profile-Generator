@@ -40,17 +40,17 @@ describe("Employee", () => {
         })
     })
 
-    // describe("getRole", () => {
-    //     // should be an employee of the company
-    //     it("should be an employee of the company", () => {
-    //         // arrange
-    //         const employee = new Employee("Tom", "Riddle", 4567, "holcrux@darkmagic.com");
+    describe("getRole", () => {
+        // should be an employee of the company
+        it("should be an employee of the company", () => {
+            // arrange
+            const employee = new Employee("Tom", "Riddle", 4567, "holcrux@darkmagic.com");
 
-    //         // act
-    //         employee.getRole();
+            // act
+            employee.getRole();
 
-    //         // assert
-    //         expect(employee.role).toEqual("Employee");
-    //     })
-    // })
+            // assert
+            expect(employee.getRole()).toEqual("Employee");
+        })
+    })
 })
