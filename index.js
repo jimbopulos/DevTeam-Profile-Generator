@@ -8,6 +8,8 @@ const inquirer = require("inquirer");
 const generateFile = require("./lib/generateFile");
 
 // DATA 
+// empty array to receive role card templates
+employeeArray = [];
 
 // FUNCTIONS/USER INTERACTIONS
 // write to new file
@@ -108,32 +110,44 @@ function askRole() {
         type: "list",
         message: "Which role would you like to add?",
         choices: ["Engineer", "Intern", "Finish and generate"],
-        name: "roles"
-    }]).then((response) => {
+        name: "role"
+    }]).then(async response => {
         // console.log(response);
-        if(response.roles === "Engineer") {
-            inquirer.prompt(engineerQuestions).then((response) => {
-            console.log(response.engineerName);
-            console.log(response.engineerId);
-            console.log(response.engineerEmail);
-            console.log(response.engineerGitHub);
-            })
-        } else if(response.roles === "Intern") {
-            inquirer.prompt(internQuestions).then((response) => {
-            console.log(response.internName);
-            console.log(response.internId);
-            console.log(response.internEmail);
-            console.log(response.internSchool);
-            })
-        } else {
+        switch(response.role) {
+            case "Engineer":
+            await inquirer.prompt(engineerQuestions).then( async response => {
+                    const newEngineer = new Engineer (
+                        response.engineerName,
+                        response.engineerId,
+                        response.engineerEmail,
+                        response.engineerGitHub
+                    );
+                    // push it to employeeArray
+                    employeeArray.push(newEngineer);
+                    console.log(employeeArray);
+                })
+                askRole();
+                break;
+            case "Intern":
+            await inquirer.prompt(internQuestions).then( async response => {
+                    const newIntern = new Intern (
+                        response.internName,
+                        response.internId,
+                        response.internEmail,
+                        response.internSchool
+                    );
+                    // push it to employeeArray
+                    // employeeArray.push(newIntern.createIntern())
+                    employeeArray.push(newIntern);
+                    console.log(employeeArray);
+                })
+                askRole();
+                break;
+            default:
             // write file
-            writeFileSync("myTeam.html", generateFile(response));
-        }
-    })
-    // ask for another role
-        // add?
-        // if yes, run askRole
-        // if not, writeFileSync
+            writeFileSync("./dist/myTeam.html", generateFile(response));
+            }
+        })
 }
 
 // Create function to write 
@@ -142,13 +156,33 @@ function askRole() {
 function init() {
     // prompt user for intial manager questions
     inquirer.prompt(managerQuestions).then((response) => {
-            console.log(response.managerName);
-            console.log(response.managerId);
-            console.log(response.managerEmail);
-            console.log(response.managerOfficeNumber);
+        const newManager = new Manager (
+            response.managerName,
+            response.managerId,
+            response.managerEmail,
+            response.managerOfficeNumber
+        );  
+            // push it to employeeArray
+            employeeArray.push(newManager);
+            console.log(employeeArray);
             askRole();
         })
     }
 
 // Function to initialize app
 init();
+
+// console.log(response.managerName);
+// console.log(response.managerId);
+// console.log(response.managerEmail);
+// console.log(response.managerOfficeNumber);
+
+// console.log(response.engineerName);
+// console.log(response.engineerId);
+// console.log(response.engineerEmail);
+// console.log(response.engineerGitHub);
+
+// console.log(response.internName);
+// console.log(response.internId);
+// console.log(response.internEmail);
+// console.log(response.internSchool);
