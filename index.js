@@ -16,18 +16,14 @@ employeeArray = [];
 const renderFile = () => {
     let teamTemplate = fs.readFileSync("./src/template.html", "utf-8");
     // locate placeholder in template.html {{ employeeCards }}
-
     // replace it with employeeArray
-    writeFileSync("./dist/myTeam.html", teamTemplate);
-}
+    teamTemplate = teamTemplate.replace("{{ employeeCards }}", employeeArray.join(""));
 
-// write to new file
-// create function to write MyTeam file
-function writeFileSync(fileName, response) {
-    fs.writeFile(fileName, response, (error) => {
-        error ? console.error(error) : console.log("Your file has been generated.");
+    // write to new file (myTeam.html)
+    fs.writeFileSync("./dist/myTeam.html", teamTemplate, (error) => {
+        error ? console.log(error) : console.log("Your file has been generated...");
     });
-}
+};
 
 // questions for user regarding Manager
 const managerQuestions = [
@@ -125,36 +121,35 @@ function askRole() {
         switch(response.role) {
             case "Engineer":
             await inquirer.prompt(engineerQuestions).then( async response => {
-                    const newEngineer = new Engineer (
-                        response.engineerName,
-                        response.engineerId,
-                        response.engineerEmail,
-                        response.engineerGitHub
-                    );
-                    // push it to employeeArray
-                    employeeArray.push(newEngineer.createEngineer());
-                    console.log(employeeArray);
+                const newEngineer = new Engineer (
+                    response.engineerName,
+                    response.engineerId,
+                    response.engineerEmail,
+                    response.engineerGitHub
+                );
+                // push it to employeeArray
+                employeeArray.push(newEngineer.createEngineer());
+                console.log(employeeArray);
                 })
                 askRole();
                 break;
             case "Intern":
             await inquirer.prompt(internQuestions).then( async response => {
-                    const newIntern = new Intern (
-                        response.internName,
-                        response.internId,
-                        response.internEmail,
-                        response.internSchool
-                    );
-                    // push it to employeeArray
-                    employeeArray.push(newIntern.createIntern());
-                    console.log(employeeArray);
+                const newIntern = new Intern (
+                    response.internName,
+                    response.internId,
+                    response.internEmail,
+                    response.internSchool
+                );
+                // push it to employeeArray
+                employeeArray.push(newIntern.createIntern());
+                console.log(employeeArray);
                 })
                 askRole();
                 break;
             default:
             // write file
             renderFile();
-            // writeFileSync("./dist/myTeam.html", generateFile(response));
             }
         })
 }
