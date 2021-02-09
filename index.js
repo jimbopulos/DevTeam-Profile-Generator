@@ -13,6 +13,7 @@ const generateFile = require("./lib/generateFile");
 // write to new file
 // create function to write MyTeam file
 function writeFileSync(fileName, response) {
+    
     fs.writeFile(fileName, response, (error) => {
         error ? console.error(error) : console.log("Your developement team file has been generated.");
     });
@@ -108,28 +109,35 @@ function askRole() {
         type: "list",
         message: "Which role would you like to add?",
         choices: ["Engineer", "Intern", "Finish and generate"],
-        name: "roles"
-    }]).then((response) => {
+        name: "role"
+    }]).then(async response => {
         // console.log(response);
-        if(response.roles === "Engineer") {
-            inquirer.prompt(engineerQuestions).then((response) => {
-            console.log(response.engineerName);
-            console.log(response.engineerId);
-            console.log(response.engineerEmail);
-            console.log(response.engineerGitHub);
-            })
-        } else if(response.roles === "Intern") {
-            inquirer.prompt(internQuestions).then((response) => {
-            console.log(response.internName);
-            console.log(response.internId);
-            console.log(response.internEmail);
-            console.log(response.internSchool);
-            })
-        } else {
+        switch(response.role) {
+            case "Engineer":
+            await inquirer.prompt(engineerQuestions).then((response) => {
+                // this is where the template literal will be written
+                console.log(response.engineerName);
+                console.log(response.engineerId);
+                console.log(response.engineerEmail);
+                console.log(response.engineerGitHub);
+                })
+                askRole();
+                break;
+            case "Intern":
+            await inquirer.prompt(internQuestions).then( async response => {
+                // this is where the template literal will be written
+                console.log(response.internName);
+                console.log(response.internId);
+                console.log(response.internEmail);
+                console.log(response.internSchool);
+                })
+                askRole();
+                break;
+            default:
             // write file
             writeFileSync("myTeam.html", generateFile(response));
-        }
-    })
+            }
+        })
     // ask for another role
         // add?
         // if yes, run askRole
