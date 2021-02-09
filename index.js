@@ -9,34 +9,92 @@ const inquirer = require("inquirer");
 // DATA 
 
 // FUNCTIONS/USER INTERACTIONS
+
+// create function to write MyTeam file
+
 // questions for user regarding Manager
-function managerQuestions() {
-    inquirer.prompt([
+const managerQuestions = [
         {
             // manager name
-            // manager id
-            // 
             type: "input",
-            message
-        }
-    ])
-}
+            message: "What is your manager's name?",
+            name: "managerName",
+        },
+        {
+            // manager id
+            type: "input",
+            message: "What is your manager's employee id?",
+            name: "managerId",
+        },
+        {
+            // manager email
+            type: "input",
+            message: "What is your manager's e-mail?",
+            name: "managerEmail",
+        },
+        {
+            // office number
+            type: "input",
+            message: "What is your manager's office number?",
+            name: "managerOfficeNumber",
+        },
+    ]
 
 // questions for user regarding Engineer
-function engineerQuestions() {
-    // ask for another role
-        // add?
-        // if yes, run askRole
-        // if not, writeFileSync
-}
+const engineerQuestions = [
+    {
+        // engineer name
+        type: "input",
+        message: "What is your engineer's name?",
+        name: "engineerName",
+    },
+    {
+        // engineer id
+        type: "input",
+        message: "What is your engineer's employee id?",
+        name: "engineerId",
+    },
+    {
+        // engineer email
+        type: "input",
+        message: "What is your engineer's e-mail?",
+        name: "engineerEmail",
+    },
+    {
+        // GitHub
+        type: "input",
+        message: "What is your engineer's GitHub username?",
+        name: "engineerGitHub",
+    },
+]
 
 // questions for user regarding Intern
-function internQuestions() {
-    // ask for another role
-        // add?
-        // if yes, run askRole
-        // if not, writeFileSync
-}
+const internQuestions = [
+    {
+        // intern name
+        type: "input",
+        message: "What is your intern's name?",
+        name: "internName",
+    },
+    {
+        // intern id
+        type: "input",
+        message: "What is your intern's employee id?",
+        name: "internId",
+    },
+    {
+        // intern email
+        type: "input",
+        message: "What is your intern's e-mail?",
+        name: "internEmail",
+    },
+    {
+        // school
+        type: "input",
+        message: "What is your intern's school?",
+        name: "internSchool",
+    },
+]
 
 // ask for role after taking user through Manager questions first
 function askRole() {
@@ -52,4 +110,25 @@ function askRole() {
             internQuestions
         }
     })
+    // ask for another role
+        // add?
+        // if yes, run askRole
+        // if not, writeFileSync
 }
+
+
+
+function init() {
+    // prompt user for intial manager questions
+    inquirer.prompt(managerQuestions).then((response) => {
+            console.log(response.managerName);
+            console.log(response.managerId);
+            console.log(response.managerEmail);
+            console.log(response.managerOfficeNumber);
+            // write to new file
+            writeToFile("dist/myTeam.html", generateMarkdown(response));
+        });
+    }
+
+// Function to initialize app
+init();
