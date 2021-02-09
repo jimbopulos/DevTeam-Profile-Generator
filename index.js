@@ -5,12 +5,18 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const inquirer = require("inquirer");
+const generateFile = require("./lib/generateFile");
 
 // DATA 
 
 // FUNCTIONS/USER INTERACTIONS
-
+// write to new file
 // create function to write MyTeam file
+function writeFileSync(fileName, response) {
+    fs.writeFile(fileName, response, (error) => {
+        error ? console.error(error) : console.log("Your developement team file has been generated.");
+    });
+}
 
 // questions for user regarding Manager
 const managerQuestions = [
@@ -101,7 +107,7 @@ function askRole() {
     inquirer.prompt([{
         type: "list",
         message: "Which role would you like to add?",
-        choices: ["Engineer", "Intern"],
+        choices: ["Engineer", "Intern", "Finish and generate"],
         name: "roles"
     }]).then((response) => {
         // console.log(response);
@@ -112,13 +118,16 @@ function askRole() {
             console.log(response.engineerEmail);
             console.log(response.engineerGitHub);
             })
-        } else {
+        } else if(response.roles === "Intern") {
             inquirer.prompt(internQuestions).then((response) => {
             console.log(response.internName);
             console.log(response.internId);
             console.log(response.internEmail);
             console.log(response.internSchool);
             })
+        } else {
+            // write file
+            writeFileSync("myTeam.html", generateFile(response));
         }
     })
     // ask for another role
@@ -138,8 +147,6 @@ function init() {
             console.log(response.managerEmail);
             console.log(response.managerOfficeNumber);
             askRole();
-            // write to new file
-            // writeToFile("dist/myTeam.html", generateMarkdown(response));
         })
     }
 
