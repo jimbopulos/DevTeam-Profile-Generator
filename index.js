@@ -8,12 +8,13 @@ const inquirer = require("inquirer");
 const generateFile = require("./lib/generateFile");
 
 // DATA 
+// empty array to receive role card templates
+employeeArray = [];
 
 // FUNCTIONS/USER INTERACTIONS
 // write to new file
 // create function to write MyTeam file
 function writeFileSync(fileName, response) {
-    
     fs.writeFile(fileName, response, (error) => {
         error ? console.error(error) : console.log("Your developement team file has been generated.");
     });
@@ -114,34 +115,23 @@ function askRole() {
         // console.log(response);
         switch(response.role) {
             case "Engineer":
-            await inquirer.prompt(engineerQuestions).then((response) => {
-                // this is where the template literal will be written
-                console.log(response.engineerName);
-                console.log(response.engineerId);
-                console.log(response.engineerEmail);
-                console.log(response.engineerGitHub);
+            await inquirer.prompt(engineerQuestions).then( async response => {
+                
                 })
+                // push it to employeeArray
                 askRole();
                 break;
             case "Intern":
             await inquirer.prompt(internQuestions).then( async response => {
-                // this is where the template literal will be written
-                console.log(response.internName);
-                console.log(response.internId);
-                console.log(response.internEmail);
-                console.log(response.internSchool);
                 })
+                // push it to employeeArray
                 askRole();
                 break;
             default:
             // write file
-            writeFileSync("myTeam.html", generateFile(response));
+            writeFileSync("./dist/myTeam.html", generateFile(response));
             }
         })
-    // ask for another role
-        // add?
-        // if yes, run askRole
-        // if not, writeFileSync
 }
 
 // Create function to write 
@@ -150,13 +140,24 @@ function askRole() {
 function init() {
     // prompt user for intial manager questions
     inquirer.prompt(managerQuestions).then((response) => {
-            console.log(response.managerName);
-            console.log(response.managerId);
-            console.log(response.managerEmail);
-            console.log(response.managerOfficeNumber);
             askRole();
         })
     }
 
 // Function to initialize app
 init();
+
+// console.log(response.managerName);
+// console.log(response.managerId);
+// console.log(response.managerEmail);
+// console.log(response.managerOfficeNumber);
+
+// console.log(response.engineerName);
+// console.log(response.engineerId);
+// console.log(response.engineerEmail);
+// console.log(response.engineerGitHub);
+
+// console.log(response.internName);
+// console.log(response.internId);
+// console.log(response.internEmail);
+// console.log(response.internSchool);
