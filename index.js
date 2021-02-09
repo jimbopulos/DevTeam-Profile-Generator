@@ -123,7 +123,7 @@ function askRole() {
                         response.engineerGitHub
                     );
                     // push it to employeeArray
-                    employeeArray.push(newEngineer);
+                    employeeArray.push(newEngineer.createEngineer());
                     console.log(employeeArray);
                 })
                 askRole();
@@ -137,8 +137,7 @@ function askRole() {
                         response.internSchool
                     );
                     // push it to employeeArray
-                    // employeeArray.push(newIntern.createIntern())
-                    employeeArray.push(newIntern);
+                    employeeArray.push(newIntern.createIntern());
                     console.log(employeeArray);
                 })
                 askRole();
@@ -163,7 +162,8 @@ function init() {
             response.managerOfficeNumber
         );  
             // push it to employeeArray
-            employeeArray.push(newManager);
+            const poopy = employeeArray.push(newManager.createManager());
+            console.log(poopy);
             console.log(employeeArray);
             askRole();
         })
