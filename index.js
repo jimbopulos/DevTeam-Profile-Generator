@@ -100,14 +100,25 @@ const internQuestions = [
 function askRole() {
     inquirer.prompt([{
         type: "list",
-        message: "Which employee would you like to add?",
+        message: "Which role would you like to add?",
         choices: ["Engineer", "Intern"],
         name: "roles"
-    }]).then(userResponse, function() {
-        if(userResponse.roles === "Engineer") {
-            engineerQuestions
+    }]).then((response) => {
+        // console.log(response);
+        if(response.roles === "Engineer") {
+            inquirer.prompt(engineerQuestions).then((response) => {
+            console.log(response.engineerName);
+            console.log(response.engineerId);
+            console.log(response.engineerEmail);
+            console.log(response.engineerGitHub);
+            })
         } else {
-            internQuestions
+            inquirer.prompt(internQuestions).then((response) => {
+            console.log(response.internName);
+            console.log(response.internId);
+            console.log(response.internEmail);
+            console.log(response.internSchool);
+            })
         }
     })
     // ask for another role
@@ -116,6 +127,7 @@ function askRole() {
         // if not, writeFileSync
 }
 
+// Create function to write 
 
 
 function init() {
@@ -125,9 +137,10 @@ function init() {
             console.log(response.managerId);
             console.log(response.managerEmail);
             console.log(response.managerOfficeNumber);
+            askRole();
             // write to new file
-            writeToFile("dist/myTeam.html", generateMarkdown(response));
-        });
+            // writeToFile("dist/myTeam.html", generateMarkdown(response));
+        })
     }
 
 // Function to initialize app
