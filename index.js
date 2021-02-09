@@ -116,15 +116,31 @@ function askRole() {
         switch(response.role) {
             case "Engineer":
             await inquirer.prompt(engineerQuestions).then( async response => {
-                
+                    const newEngineer = new Engineer (
+                        response.engineerName,
+                        response.engineerId,
+                        response.engineerEmail,
+                        response.engineerGitHub
+                    );
+                    // push it to employeeArray
+                    employeeArray.push(newEngineer);
+                    console.log(employeeArray);
                 })
-                // push it to employeeArray
                 askRole();
                 break;
             case "Intern":
             await inquirer.prompt(internQuestions).then( async response => {
+                    const newIntern = new Intern (
+                        response.internName,
+                        response.internId,
+                        response.internEmail,
+                        response.internSchool
+                    );
+                    // push it to employeeArray
+                    // employeeArray.push(newIntern.createIntern())
+                    employeeArray.push(newIntern);
+                    console.log(employeeArray);
                 })
-                // push it to employeeArray
                 askRole();
                 break;
             default:
@@ -140,6 +156,15 @@ function askRole() {
 function init() {
     // prompt user for intial manager questions
     inquirer.prompt(managerQuestions).then((response) => {
+        const newManager = new Manager (
+            response.managerName,
+            response.managerId,
+            response.managerEmail,
+            response.managerOfficeNumber
+        );  
+            // push it to employeeArray
+            employeeArray.push(newManager);
+            console.log(employeeArray);
             askRole();
         })
     }
