@@ -12,11 +12,20 @@ const generateFile = require("./lib/generateFile");
 employeeArray = [];
 
 // FUNCTIONS/USER INTERACTIONS
+// get the template
+const renderFile = () => {
+    let teamTemplate = fs.readFileSync("./src/template.html", "utf-8");
+    // locate placeholder in template.html {{ employeeCards }}
+
+    // replace it with employeeArray
+    writeFileSync("./dist/myTeam.html", teamTemplate);
+}
+
 // write to new file
 // create function to write MyTeam file
 function writeFileSync(fileName, response) {
     fs.writeFile(fileName, response, (error) => {
-        error ? console.error(error) : console.log("Your developement team file has been generated.");
+        error ? console.error(error) : console.log("Your file has been generated.");
     });
 }
 
@@ -144,13 +153,11 @@ function askRole() {
                 break;
             default:
             // write file
-            writeFileSync("./dist/myTeam.html", generateFile(response));
+            renderFile();
+            // writeFileSync("./dist/myTeam.html", generateFile(response));
             }
         })
 }
-
-// Create function to write 
-
 
 function init() {
     // prompt user for intial manager questions
@@ -162,8 +169,7 @@ function init() {
             response.managerOfficeNumber
         );  
             // push it to employeeArray
-            const poopy = employeeArray.push(newManager.createManager());
-            console.log(poopy);
+            employeeArray.push(newManager.createManager());
             console.log(employeeArray);
             askRole();
         })
@@ -171,18 +177,3 @@ function init() {
 
 // Function to initialize app
 init();
-
-// console.log(response.managerName);
-// console.log(response.managerId);
-// console.log(response.managerEmail);
-// console.log(response.managerOfficeNumber);
-
-// console.log(response.engineerName);
-// console.log(response.engineerId);
-// console.log(response.engineerEmail);
-// console.log(response.engineerGitHub);
-
-// console.log(response.internName);
-// console.log(response.internId);
-// console.log(response.internEmail);
-// console.log(response.internSchool);
