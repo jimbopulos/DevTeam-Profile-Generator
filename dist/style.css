@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+i {
+  margin-right: 3%;
+}
+
 .team-header {
   padding: 3%;
   background-color: cornflowerblue;
