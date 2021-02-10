@@ -10,6 +10,7 @@ An easy-to-use app to generate a team profiles page for a user's development tea
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Tests](#tests)
 - [License](#license)
 
 ## Installation
@@ -21,7 +22,8 @@ Enter `node index` in the terminal to begin the process.
 ## Usage
 
 Demonstration of app initializaition
-[Demonstration of app initializaition](media/DevTeam_Generator_init.gif)
+
+![Demonstration of app initializaition](media/DevTeam_Generator_init.gif)
 
 ## Tests
 
@@ -30,6 +32,10 @@ To run tests, enter the following into your terminal:
 ```md
 npm run test TEST_FILE_NAME
 ```
+
+![Demonstration of testing in app](media/DevTeam_Generator_test.gif)
+
+(_may also use `npm test`_)
 
 ## Questions
 
