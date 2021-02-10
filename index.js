@@ -21,7 +21,7 @@ const renderFile = () => {
 
     // console.log(teamTemplate);
     // write to new file (myTeam.html)
-    fs.writeFileSync("./dist/myTeam.html", teamTemplate, (error) => {
+    fs.writeFile("./dist/myTeam.html", teamTemplate, (error) => {
         error ? console.log(error) : console.log("Your file has been generated...");
     });
 };

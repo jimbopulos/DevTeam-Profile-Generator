@@ -12,10 +12,11 @@
 .engineer-header,
 .intern-header {
   padding: 10%;
-  color: white;
 }
 
 .card {
+  margin-top: 5%;
+  margin-bottom: 5%;
   border-radius: 4px;
   box-shadow: 2px 3px 8px black;
 }
