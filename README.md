@@ -20,6 +20,9 @@ Enter `node index` in the terminal to begin the process.
 
 ## Usage
 
+Demonstration of app initializaition
+[Demonstration of app initializaition](media/DevTeam_Generator_init.gif)
+
 ## Tests
 
 To run tests, enter the following into your terminal:
