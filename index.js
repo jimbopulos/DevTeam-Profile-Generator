@@ -19,8 +19,9 @@ const renderFile = () => {
     // replace it with employeeArray
     teamTemplate = teamTemplate.replace("{{ employeeCards }}", employeeArray.join(""));
 
+    // console.log(teamTemplate);
     // write to new file (myTeam.html)
-    fs.writeFileSync("./dist/myTeam.html", teamTemplate, (error) => {
+    fs.writeFile("./dist/myTeam.html", teamTemplate, (error) => {
         error ? console.log(error) : console.log("Your file has been generated...");
     });
 };
@@ -129,7 +130,7 @@ function askRole() {
                 );
                 // push it to employeeArray
                 employeeArray.push(newEngineer.createEngineer());
-                console.log(employeeArray);
+                // console.log(employeeArray);
                 })
                 askRole();
                 break;
@@ -143,7 +144,7 @@ function askRole() {
                 );
                 // push it to employeeArray
                 employeeArray.push(newIntern.createIntern());
-                console.log(employeeArray);
+                // console.log(employeeArray);
                 })
                 askRole();
                 break;
@@ -165,7 +166,7 @@ function init() {
         );  
             // push it to employeeArray
             employeeArray.push(newManager.createManager());
-            console.log(employeeArray);
+            // console.log(employeeArray);
             askRole();
         })
     }
